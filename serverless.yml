@@ -1,0 +1,25 @@
+service: theworld
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${env:STAGE}       # optional, default: dev
+  region: ${env:REGION}	    # optional, default: us-east-1
+  memorySize: 256           # optional, in MB, default: 1024
+  timeout: 30               # optional, in seconds, default: 6
+  versionFunctions: false   # optional, default: true
+  #vpc:
+  #  securityGroupIds:
+  #    - sg-xxxxxx
+  #  subnetIds:
+  #    - subnet-xxxxxx
+  #    - subnet-xxxxxx
+functions:
+  api:
+    name: ${self:service}-${self:provider.stage}
+    handler: build/index.handler
+    events:
+      - http: ANY /
+      - http: ANY {proxy+}
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
