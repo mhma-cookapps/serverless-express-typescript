@@ -8,4 +8,4 @@ const config = {
   prod: prodConfig
 }
 
-export default config[process.env.NODE_ENV]
+export default config[process.env.STAGE]
