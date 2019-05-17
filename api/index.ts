@@ -3,8 +3,8 @@ import express from 'express'
 import interceptor from 'express-interceptor'
 import { ApiError } from './utils/error'
 import DBManager from './utils/db'
-import v1 from './v1'
 import RedisManager from './utils/redis'
+import v1 from './v1'
 
 const app = express()
 app.use(express.json())
