@@ -1,5 +1,6 @@
 import awsServerlessExpress from 'aws-serverless-express'
 import express from 'express'
+import interceptor from 'express-interceptor'
 import { ApiError } from './utils/error'
 import DBManager from './utils/db'
 import v1 from './v1'
@@ -14,17 +15,25 @@ app.use((req: any, res, next) => {
   next()
 })
 // Release Resources
-app.use((req: any, res, next) => {
-  res.on('finish', async () => {
-    try {
-      await req.db.release()
-      await req.redis.release()
-    } catch (error) {
-      console.error(error)
+// intercept res.send
+const finalInterceptor = interceptor((req, res) => {
+  return {
+    isInterceptable: () => {
+      return true
+    },
+    intercept: async (body, send) => {
+      let finalBody = body
+      try {
+        if (req.db) await req.db.release()
+        if (req.redis) req.redis.release()
+      } catch (error) {
+        console.error(error)
+      }
+      send(finalBody)
     }
-  })
-  next()
+  }
 })
+app.use(finalInterceptor)
 app.use('/api/v1', v1)
 app.get('/env', (req, res) => res.json({ result: `Target: ${process.env.STAGE}` }))
 
