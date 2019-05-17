@@ -15,7 +15,6 @@ app.use((req: any, res, next) => {
   next()
 })
 // Release Resources
-// intercept res.send
 const finalInterceptor = interceptor((req, res) => {
   return {
     isInterceptable: () => {
