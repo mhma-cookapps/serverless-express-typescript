@@ -26,7 +26,9 @@ class DBManager {
   /**
    * Exrtract Helpers
    */
-  fetchRows (queryResult: any[]): any[] {
+  async fetchRows (sql, params: any[] = [], dbConfigName: string = 'default'): Promise<any[]> {
+    const conn = await this.getConnection(dbConfigName)
+    const queryResult = await conn.query(sql, params)
     if (!queryResult[0]) return null
     const data: any[] = queryResult[0]
 
@@ -40,9 +42,9 @@ class DBManager {
     return ret
   }
 
-  fetchOne (queryResult: any[]): any {
-    const result = this.fetchRows(queryResult)
-    return (result) ? result.shift() : null
+  async fetchOne (sql, params: any[] = [], dbConfigName: string = 'default'): Promise<any> {
+    const ret = await this.fetchRows(sql, params, dbConfigName)
+    return (ret) ? ret.shift() : null
   }
 }
 
