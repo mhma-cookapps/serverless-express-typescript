@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# 1.3.0 (2019-05-17)
+
+
+### Bug Fixes
+
+* add interceptor ([a68f34a](http://192.168.0.204/playgrounds/theworld/commits/a68f34a))
+
+
+### Features
+
+* add upload exmple ([c6c7e02](http://192.168.0.204/playgrounds/theworld/commits/c6c7e02))
+
+
+
 # [1.2.0](http://192.168.0.204/playgrounds/theworld/compare/v1.1.0...v1.2.0) (2019-05-16)
 
 
