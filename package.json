@@ -1,8 +1,8 @@
 {
-  "name": "theworld",
+  "name": "example-typescript-express-serverless",
   "version": "1.3.0",
   "main": "index.js",
-  "repository": "http://192.168.0.204/playgrounds/theworld.git",
+  "repository": "https://github.com/mhma-cookapps/example-typescript-express-serverless.git",
   "author": "mhma <mhma@cookapps.com>",
   "license": "MIT",
   "scripts": {
