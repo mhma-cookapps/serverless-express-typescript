@@ -29,11 +29,6 @@ All notable changes to this project will be documented in this file. See [standa
 * add user sql sample ([78dbd94](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/78dbd94))
 
 
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 ### Bug Fixes
 
 * db wrapper ([9059ce6](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/9059ce6))
