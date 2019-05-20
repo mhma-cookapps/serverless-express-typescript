@@ -1,6 +1,6 @@
 import { createConnection } from 'mysql2/promise'
 import config from '../config'
-// a
+
 class DBManager {
   private connections: Object = {}
 
