@@ -1,35 +1,42 @@
 import { createConnection, escapeId } from 'mysql2/promise'
 import config from '../config'
-// a
+
 class DBManager {
-  private connections: Object = {}
+  private conn = null
+  private dataStoreKey: string = null
+  constructor (datastoreKey: string) {
+    this.dataStoreKey = config.datastores[datastoreKey]
+  }
 
-  async getConnection (datastoreKey: string) {
-    if (!datastoreKey) return null
-    if (this.connections.hasOwnProperty(datastoreKey)) return this.connections[datastoreKey]
-
-    this.connections[datastoreKey] = await createConnection(Object.assign({ connectTimeout: 20000 }, config.datastores[datastoreKey]))
-
-    return this.connections[datastoreKey]
+  async getConnection () {
+    if (!this.dataStoreKey) return null
+    if (this.conn) return this.conn
+    this.conn = await createConnection(Object.assign({ connectTimeout: 20000 }, this.dataStoreKey))
+    return this.conn
   }
 
   /**
    * Memory Destructor
    */
   async release () {
-    Object.keys(this.connections).forEach(datastoreKey => {
-      this.connections[datastoreKey].end()
-      delete this.connections[datastoreKey]
-    })
+    if (this.conn) {
+      await this.conn.end()
+      this.conn = null
+    }
   }
 
   /**
    * Exrtract Helpers
    */
-  async query (sql, params: any[] = [], dbConfigName: string = 'default'): Promise<any> {
-    const conn = await this.getConnection(dbConfigName)
-    const ret = await conn.query(sql, params)
-    return ret
+  async query (sql, params: any[] = []): Promise <any> {
+    try {
+      const conn = await this.getConnection()
+      const ret = await conn.query(sql, params)
+      return ret
+    } catch (error) {
+      console.error(error)
+    }
+    return false
   }
 
   async insert (table, record, ignore: boolean = false) {
@@ -55,9 +62,9 @@ class DBManager {
     return res
   }
 
-  async fetchRows (sql, params: any[] = [], dbConfigName: string = 'default'): Promise<any[]> {
+  async fetchRows (sql, params: any[] = []): Promise <any[]> {
     const queryResult = await this.query(sql, params)
-    if (!queryResult[0]) return null
+    if (!queryResult[0 ]) return null
     const data: any[] = queryResult[0]
 
     const ret = data.map(row => {
@@ -70,8 +77,8 @@ class DBManager {
     return ret
   }
 
-  async fetchOne (sql, params: any[] = [], dbConfigName: string = 'default'): Promise<any> {
-    const ret = await this.fetchRows(sql, params, dbConfigName)
+  async fetchOne (sql, params: any[] = []): Promise <any> {
+    const ret = await this.fetchRows(sql, params)
     return (ret) ? ret.shift() : null
   }
 }

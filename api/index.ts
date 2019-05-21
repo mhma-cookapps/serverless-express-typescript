@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 // Inject Resources
 app.use((req: any, res, next) => {
-  req.db = new DBManager()
+  req.db = new DBManager('default')
   req.redis = new RedisManager()
   next()
 })
