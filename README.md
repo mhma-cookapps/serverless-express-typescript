@@ -1,20 +1,17 @@
 In Terminal
 ## Install Packages
 ```
-yarn
 $ yarn
 ```
 
 ## Local Test
 ```
-yarn dev
 $ yarn dev      // terminal#1
 $ yarn watch    // terminal#2
 ```
 
 ## Deploy To Dev
 ```
-yarn deploy:dev
 $ yarn deploy:dev
 ```
 
@@ -23,10 +20,6 @@ $ yarn deploy:dev
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [1.5.1](https://github.com/mhma-cookapps/example-typescript-express-serverless/compare/v1.5.0...v1.5.1) (2019-05-24)
-
-
-
-# 1.5.0 (2019-05-24)
 
 
 ### Bug Fixes
