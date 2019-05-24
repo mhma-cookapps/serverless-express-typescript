@@ -1,3 +1,23 @@
+In Terminal
+## Install Packages
+```
+yarn
+$ yarn
+```
+
+## Local Test
+```
+yarn dev
+$ yarn dev      // terminal#1
+$ yarn watch    // terminal#2
+```
+
+## Deploy To Dev
+```
+yarn deploy:dev
+$ yarn deploy:dev
+```
+
 # Change Log
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
