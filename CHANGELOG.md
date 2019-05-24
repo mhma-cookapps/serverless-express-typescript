@@ -5,10 +5,6 @@ All notable changes to this project will be documented in this file. See [standa
 ## [1.5.1](https://github.com/mhma-cookapps/example-typescript-express-serverless/compare/v1.5.0...v1.5.1) (2019-05-24)
 
 
-
-# 1.5.0 (2019-05-24)
-
-
 ### Bug Fixes
 
 * add interceptor ([a68f34a](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/a68f34a))
