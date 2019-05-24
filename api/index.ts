@@ -2,16 +2,16 @@ import awsServerlessExpress from 'aws-serverless-express'
 import express from 'express'
 import interceptor from 'express-interceptor'
 import { ApiError } from './utils/error'
-import DBManager from './utils/db'
-import RedisManager from './utils/redis'
 import v1 from './v1'
+import DB from './utils/db'
+import Redis from './utils/redis'
 
 const app = express()
 app.use(express.json())
 // Inject Resources
 app.use((req: any, res, next) => {
-  req.db = new DBManager('default')
-  req.redis = new RedisManager()
+  req.db = new DB('default')
+  req.redis = new Redis()
   next()
 })
 // Release Resources

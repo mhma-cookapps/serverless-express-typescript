@@ -1,9 +1,14 @@
 import { createConnection, escapeId } from 'mysql2/promise'
 import config from '../config'
 
-class DBManager {
+class DB {
+  // Database Connection
   private conn = null
+  // Config Database Name
   private dataStoreKey: string = null
+  // Debug Query
+  private debug = false
+
   constructor (datastoreKey: string) {
     this.dataStoreKey = config.datastores[datastoreKey]
   }
@@ -26,23 +31,44 @@ class DBManager {
   }
 
   /**
-   * Exrtract Helpers
+   * Helpers
    */
-  async query (sql, params: any[] = []): Promise <any> {
-    try {
-      const conn = await this.getConnection()
-      const ret = await conn.query(sql, params)
-      return ret
-    } catch (error) {
-      console.error(error)
+  async beginTransaction (): Promise <any> {
+    const conn = await this.getConnection()
+    await conn.beginTransaction()
+  }
+
+  async commit (): Promise <any> {
+    const conn = await this.getConnection()
+    await conn.commit()
+  }
+
+  async rollback (): Promise <any> {
+    const conn = await this.getConnection()
+    await conn.rollback()
+  }
+
+  async query (sql, params: any[] = []): Promise < any > {
+    const conn = await this.getConnection()
+    const query = conn.format(sql, params)
+    const ret = await conn.query(query)
+    if (this.debug) {
+      console.log(query)
     }
-    return false
+    return ret
   }
 
   async insert (table, record, ignore: boolean = false) {
-    let query = 'INSERT' + (ignore ? ' IGNORE' : '') + ' INTO ' + escapeId(table) + ' SET ?'
+    const query = 'INSERT' + (ignore ? ' IGNORE' : '') + ' INTO ' + escapeId(table) + ' SET ?'
     const res = await this.query(query, record)
     return res[0].insertId
+  }
+
+  async insertUpdate (table, recordInsert, recordUpdate) {
+    const query = 'INSERT INTO ' + escapeId(table) + ' SET ? ON DUPLICATE KEY UPDATE ?'
+    const values = [recordInsert, recordUpdate]
+    const res = await this.query(query, values)
+    return res
   }
 
   async update (table, index, record) {
@@ -62,7 +88,7 @@ class DBManager {
     return res
   }
 
-  async fetchRows (sql, params: any[] = []): Promise <any[]> {
+  async fetchRows (sql: string, params: any[] = []): Promise <any[]> {
     const queryResult = await this.query(sql, params)
     if (!queryResult[0 ]) return null
     const data: any[] = queryResult[0]
@@ -77,10 +103,15 @@ class DBManager {
     return ret
   }
 
-  async fetchOne (sql, params: any[] = []): Promise <any> {
+  async fetchOne (sql: string, params: any[] = []): Promise < any > {
     const ret = await this.fetchRows(sql, params)
     return (ret) ? ret.shift() : null
   }
+
+  affectedRows (queryResult: any[]) {
+    if (!queryResult || queryResult.length <= 0) return 0
+    return queryResult[0].affectedRows || 0
+  }
 }
 
-export default DBManager
+export default DB

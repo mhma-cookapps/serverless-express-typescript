@@ -1,14 +1,10 @@
 import express from 'express'
-import { errInternal } from '../../utils/error'
+import { wrapAsync } from '../../utils/function'
 
 const router = express.Router()
 
-router.post('/login', async (req: any, res, next) => {
-  try {
-    res.send({ data: 'OK' })
-  } catch (err) {
-    return next(errInternal(err.message))
-  }
-})
+router.post('/login', wrapAsync(async (req: any, res, next) => {
+  res.send({ data: 'OK' })
+}))
 
 export default router

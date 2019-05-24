@@ -3,17 +3,18 @@
 In Terminal
 ## Install Packages
 ```
-yarn
+$ yarn
 ```
 
 ## Local Test
 ```
-yarn dev
+$ yarn dev      // terminal#1
+$ yarn watch    // terminal#2
 ```
 
 ## Deploy To Dev
 ```
-yarn deploy:dev
+$ yarn deploy:dev
 ```
 
 
