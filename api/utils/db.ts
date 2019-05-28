@@ -7,7 +7,7 @@ class DB {
   // Config Database Name
   private dataStoreKey: string = null
   // Debug Query
-  private debug = false
+  private debug = true
 
   constructor (datastoreKey: string) {
     this.dataStoreKey = config.datastores[datastoreKey]
@@ -52,7 +52,7 @@ class DB {
     const conn = await this.getConnection()
     const query = conn.format(sql, params)
     const ret = await conn.query(query)
-    if (this.debug) {
+    if (process.env.STAGE === 'local' && this.debug) {
       console.log(query)
     }
     return ret

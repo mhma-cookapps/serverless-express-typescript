@@ -1,3 +1,4 @@
+import 'source-map-support/register'
 import awsServerlessExpress from 'aws-serverless-express'
 import express from 'express'
 import interceptor from 'express-interceptor'
@@ -5,17 +6,18 @@ import { ApiError } from './utils/error'
 import v1 from './v1'
 import DB from './utils/db'
 import Redis from './utils/redis'
+import { Request } from './@types/request'
 
 const app = express()
 app.use(express.json())
 // Inject Resources
-app.use((req: any, res, next) => {
+app.use((req: Request, res, next) => {
   req.db = new DB('default')
   req.redis = new Redis()
   next()
 })
 // Release Resources
-const finalInterceptor = interceptor((req, res) => {
+const finalInterceptor = interceptor((req: Request, res) => {
   return {
     isInterceptable: () => {
       return true

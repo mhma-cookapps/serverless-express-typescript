@@ -40,8 +40,8 @@ class Redis {
     return res
   }
 
-  async hsetAsync (key: string, subKey: string, data: any) {
-    this._redis.hsetAsync(key, subKey, data)
+  hset (key: string, subKey: string, data: any) {
+    this._redis.hset(key, subKey, data)
   }
 
   del (keys: any[]): boolean {

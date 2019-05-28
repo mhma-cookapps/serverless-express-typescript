@@ -1,5 +1,3 @@
-import config from '../config'
-
 // Development Constants
 const devConfig = {
   datastores: {
@@ -17,7 +15,4 @@ const devConfig = {
   }
 }
 
-export default {
-  ...config,
-  ...devConfig
-}
+export default devConfig

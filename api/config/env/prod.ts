@@ -1,5 +1,3 @@
-import config from '../config'
-
 // Production Constants
 const prodConfig = {
   datastores: {
@@ -17,8 +15,5 @@ const prodConfig = {
   }
 }
 
-export default {
-  ...config,
-  ...prodConfig
-}
+export default prodConfig
 
