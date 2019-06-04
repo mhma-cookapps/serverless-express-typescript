@@ -7,7 +7,8 @@ const prodConfig = {
       user: 'xxx',
       password: 'xxxx',
       database: 'xxxx',
-      timezone: 'utc'
+      timezone: 'utc',
+      dateStrings: true
     },
     redis: {
       url: 'redis://xxx.com:6379'
