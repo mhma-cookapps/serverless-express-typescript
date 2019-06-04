@@ -1,9 +1,5 @@
-import DB from '../utils/db';
-
-interface User {
-  uid: number
-  name: string
-}
+import DB from '../utils/db'
+import { User } from '../@types/user'
 
 export default {
   getUser: async (db: DB, uid: number) => {
