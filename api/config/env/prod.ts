@@ -15,5 +15,5 @@ const prodConfig = {
   }
 }
 
-export default prodConfig
+module.exports = prodConfig
 

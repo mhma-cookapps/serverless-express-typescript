@@ -15,4 +15,4 @@ const devConfig = {
   }
 }
 
-export default devConfig
+module.exports = devConfig

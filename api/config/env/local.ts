@@ -15,4 +15,4 @@ const localConfig = {
   }
 }
 
-export default localConfig
+module.exports = localConfig

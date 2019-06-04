@@ -6,13 +6,13 @@ $ yarn
 
 ## Local Test
 ```
-$ yarn dev      // terminal#1
-$ yarn watch    // terminal#2
+$ yarn dev          // serverless offline & ts-watch
 ```
 
 ## Deploy To Dev
 ```
-$ yarn deploy:dev
+$ yarn deploy:dev   // development
+$ yarn deploy:prod  // production
 ```
 
 # Change Log
