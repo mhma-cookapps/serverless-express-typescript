@@ -2,11 +2,11 @@ import 'source-map-support/register'
 import awsServerlessExpress from 'aws-serverless-express'
 import express from 'express'
 import interceptor from 'express-interceptor'
-import { ApiError } from './utils/error'
 import v1 from './v1'
 import DB from './utils/db'
 import Redis from './utils/redis'
 import { Request } from './@types/request'
+import { ApiError } from './utils/error'
 
 const app = express()
 app.use(express.json())
