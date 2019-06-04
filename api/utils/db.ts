@@ -49,6 +49,7 @@ class DB {
   }
 
   async query (sql, params: any[] = []): Promise < any > {
+    if (/^update/i.test(sql) && !(/where/i.test(sql))) throw new Error('Invalid Update Query')
     const conn = await this.getConnection()
     const query = conn.format(sql, params)
     const ret = await conn.query(query)
