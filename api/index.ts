@@ -19,9 +19,7 @@ app.use((req: Request, res, next) => {
 // Release Resources
 const finalInterceptor = interceptor((req: Request, res) => {
   return {
-    isInterceptable: () => {
-      return true
-    },
+    isInterceptable: () => true,
     intercept: async (body, send) => {
       let finalBody = body
       try {
