@@ -48,7 +48,7 @@ class DB {
     await conn.rollback()
   }
 
-  async query (sql, params: any[] = []): Promise < any > {
+  async query (sql, params: any[] = []): Promise <any> {
     if (/^update/i.test(sql) && !(/where/i.test(sql))) throw new Error('Invalid Update Query')
     const conn = await this.getConnection()
     const query = conn.format(sql, params)
@@ -59,13 +59,13 @@ class DB {
     return ret
   }
 
-  async insert (table, record, ignore: boolean = false) {
+  async insert (table, record, ignore: boolean = false): Promise<number> {
     const query = 'INSERT' + (ignore ? ' IGNORE' : '') + ' INTO ' + escapeId(table) + ' SET ?'
     const res = await this.query(query, record)
     return res[0].insertId
   }
 
-  async insertUpdate (table, recordInsert, recordUpdate) {
+  async insertUpdate (table, recordInsert, recordUpdate): Promise<any> {
     const query = 'INSERT INTO ' + escapeId(table) + ' SET ? ON DUPLICATE KEY UPDATE ?'
     const values = [recordInsert, recordUpdate]
     const res = await this.query(query, values)
@@ -97,7 +97,7 @@ class DB {
 
   async fetchRows (sql: string, params: any[] = []): Promise <any[]> {
     const queryResult = await this.query(sql, params)
-    if (!queryResult[0 ]) return null
+    if (!queryResult[0]) return null
     const data: any[] = queryResult[0]
 
     const ret = data.map(row => {
@@ -110,7 +110,7 @@ class DB {
     return ret
   }
 
-  async fetchOne (sql: string, params: any[] = []): Promise < any > {
+  async fetchOne (sql: string, params: any[] = []): Promise <any> {
     const ret = await this.fetchRows(sql, params)
     return (ret) ? ret.shift() : null
   }
