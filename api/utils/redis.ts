@@ -25,19 +25,16 @@ class Redis {
    * Get Redis Value
    * @param key
    */
-  async get (key: string) {
-    const value = await this._redis.getAsync(key)
-    return value
+  async get (key: string): Promise<any> {
+    return this._redis.getAsync(key)
   }
 
-  async hgetAsync (key: string, subKey: any) {
-    const res = await this._redis.hgetAsync(key, subKey)
-    return res
+  async hgetAsync (key: string, subKey: any): Promise<any> {
+    return this._redis.hgetAsync(key, subKey)
   }
 
-  async hgetallAsync (key: string) {
-    const res = await this._redis.hgetallAsync(key)
-    return res
+  async hgetallAsync (key: string): Promise<any> {
+    return this._redis.hgetallAsync(key)
   }
 
   hset (key: string, subKey: string, data: any) {
