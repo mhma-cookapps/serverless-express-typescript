@@ -4,19 +4,19 @@ import config from '../config'
 class DB {
   // Database Connection
   private conn = null
-  // Config Database Name
-  private dataStoreKey: string = null
+  // Database Config
+  private dataStoreConfig: object = null
   // Debug Query
   private debug = true
 
   constructor (datastoreKey: string) {
-    this.dataStoreKey = config.datastores[datastoreKey]
+    this.dataStoreConfig = config.datastores[datastoreKey]
   }
 
   async getConnection () {
-    if (!this.dataStoreKey) return null
+    if (!this.dataStoreConfig) return null
     if (this.conn) return this.conn
-    this.conn = await createConnection(Object.assign({ connectTimeout: 20000 }, this.dataStoreKey))
+    this.conn = await createConnection(Object.assign({ connectTimeout: 20000 }, this.dataStoreConfig))
     return this.conn
   }
 
