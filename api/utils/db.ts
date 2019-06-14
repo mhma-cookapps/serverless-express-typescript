@@ -72,13 +72,7 @@ class DB {
     return res
   }
 
-  /**
-   * @deprecated
-   * @param table
-   * @param index
-   * @param record
-   */
-  async update__deprecated (table, index, record) {
+  async update (table, index, record) {
     let query = 'UPDATE ' + escapeId(table) + ' SET ? WHERE'
     let values = [record]
     if (typeof index === 'object') {
