@@ -1,6 +1,5 @@
 import 'source-map-support/register'
-import awsServerlessExpress from 'aws-serverless-express'
-import awsServerlessExpressMiddleware from 'aws-serverless-express/middleware'
+import serverless from 'serverless-http'
 import express from 'express'
 import interceptor from 'express-interceptor'
 import v1 from './v1'
@@ -10,8 +9,6 @@ import { Request } from './@types/request'
 import { ApiError } from './utils/error'
 
 const app = express()
-// Set req.apiGateway
-app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(express.json())
 // Inject Resources
 app.use((req: Request, res, next) => {
@@ -54,6 +51,4 @@ app.use((err, req, res, next) => {
   res.status(error.code).send({ error })
 })
 
-const server = awsServerlessExpress.createServer(app)
-
-exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context)
+export const handler = serverless(app)

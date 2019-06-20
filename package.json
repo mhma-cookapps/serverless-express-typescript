@@ -32,12 +32,12 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "aws-serverless-express": "^3.3.6",
     "bluebird": "^3.5.4",
     "express": "^4.16.4",
     "express-interceptor": "^1.2.0",
     "mysql2": "^1.6.5",
     "redis": "^2.8.0",
+    "serverless-http": "^2.0.2",
     "source-map-support": "^0.5.12"
   },
   "husky": {

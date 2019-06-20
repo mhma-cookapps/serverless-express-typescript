@@ -158,6 +158,11 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+"@types/aws-lambda@^8.10.19":
+  version "8.10.27"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.27.tgz#33366bb26d8fb116f414e7c1855df5a0b6aa1d3d"
+  integrity sha512-9QjcjORRtgG5KPVHWqGZ0F2Uo/ALUWQ5D7qfJEco0fEjoSbA908w05RXql7YPS72jQ1w6I+pr+8pQPqBPlYnSw==
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -444,14 +449,6 @@ aws-sdk@^2.430.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-aws-serverless-express@^3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/aws-serverless-express/-/aws-serverless-express-3.3.6.tgz#5fb35c23af3d6e18a6bebdb4397d20dfdcc0a828"
-  integrity sha512-VTn8YQpPpMAEdMeGjyaSygy7Rc0057C9MUjeZION0NBqmwTyphpu9Tc5DCHRNF4qNFQ9x1xcOte6OXKzJvvDhw==
-  dependencies:
-    binary-case "^1.0.0"
-    type-is "^1.6.16"
-
 b64@3.x.x:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/b64/-/b64-3.0.3.tgz#36afeee0d9345f046387ce6de8a6702afe5bb56e"
@@ -496,11 +493,6 @@ base@^0.11.1:
     isobject "^3.0.1"
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
-
-binary-case@^1.0.0:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/binary-case/-/binary-case-1.1.4.tgz#d687104d59e38f2b9e658d3a58936963c59ab931"
-  integrity sha512-9Kq8m6NZTAgy05Ryuh7U3Qc4/ujLQU1AZ5vMw4cr3igTdi5itZC6kCNrRr2X8NzPiDn2oUIFTfa71DKMnue/Zg==
 
 bl@^1.0.0:
   version "1.2.2"
@@ -4126,6 +4118,13 @@ serverless-dotenv-plugin@^2.0.1:
     dotenv "^4.0.0"
     dotenv-expand "^4.0.1"
 
+serverless-http@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/serverless-http/-/serverless-http-2.0.2.tgz#88c48a0977a0c3793fbb859a4661098cebff672d"
+  integrity sha512-rPE8+LiIWw1ONubDaKSgQjJA6qXx50vFJUtU/8+kKduJlcgWNC7efkEq1vLireIK+3sq7aaip8TRdEQJLZggCg==
+  optionalDependencies:
+    "@types/aws-lambda" "^8.10.19"
+
 serverless-offline@4.10.0:
   version "4.10.0"
   resolved "https://registry.yarnpkg.com/serverless-offline/-/serverless-offline-4.10.0.tgz#608ae9e1a85886fc80532610ff06e9e684e99901"
@@ -4778,7 +4777,7 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-type-is@^1.6.16, type-is@~1.6.16:
+type-is@~1.6.16:
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.18.tgz#4e552cd05df09467dcbc4ef739de89f2cf37c131"
   integrity sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
