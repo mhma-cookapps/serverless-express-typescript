@@ -1,6 +1,6 @@
 {
   "name": "example-typescript-express-serverless",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "index.js",
   "repository": "https://github.com/mhma-cookapps/example-typescript-express-serverless.git",
   "author": "mhma <mhma@cookapps.com>",
@@ -11,7 +11,7 @@
     "deploy:dev": "npm run build && cross-env-shell NODE_ENV=dev \"sls deploy --env dev\"",
     "deploy:prod": "npm run build && cross-env-shell NODE_ENV=prod \"sls deploy --env prod\"",
     "debug": "export SLS_DEBUG=* && node --debug ./node_modules/serverless/bin/serverless offline -s dev",
-    "release": "standard-version && cpy CHANGELOG.md . --rename=README.md",
+    "tag:version": "standard-version && cpy CHANGELOG.md . --rename=README.md",
     "build": "tsc --project tsconfig.json",
     "watch": "tsc --project tsconfig.json -w"
   },

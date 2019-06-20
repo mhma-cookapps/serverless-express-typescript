@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.7.0](https://github.com/mhma-cookapps/example-typescript-express-serverless/compare/v1.6.0...v1.7.0) (2019-06-20)
+
+
+### Bug Fixes
+
+* db, package.json ([f2723c1](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/f2723c1))
+* fix db update ([22e1308](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/22e1308))
+* fix serverless-offline version ([5bf9cc7](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/5bf9cc7))
+
+
+### Features
+
+* add apigateway middleware ([c345135](https://github.com/mhma-cookapps/example-typescript-express-serverless/commit/c345135))
+
+
+
 # 1.6.0 (2019-05-28)
 
 
