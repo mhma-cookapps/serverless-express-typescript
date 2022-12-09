@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-interceptor": "^1.2.0",
     "mysql2": "^1.6.5",
     "redis": "^2.8.0",
